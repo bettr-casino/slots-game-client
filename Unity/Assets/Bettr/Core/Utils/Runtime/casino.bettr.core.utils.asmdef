@@ -1,0 +1,18 @@
+{
+    "name": "casino.bettr.core.tileutils",
+    "rootNamespace": "",
+    "references": [
+        "GUID:262f2f13ad8b144aeb58be6c3d233d0b"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Editor"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
