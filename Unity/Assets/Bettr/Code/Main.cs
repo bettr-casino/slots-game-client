@@ -37,6 +37,8 @@ namespace Bettr.Code
             if (_oneTimeSetUpComplete) yield break;
             
             Debug.Log("OneTimeSetup started");
+
+            TileController.RegisterModule("Bettr.dll");
             
             // load the config file
             _configData = ConfigReader.Parse(configFile.text);
