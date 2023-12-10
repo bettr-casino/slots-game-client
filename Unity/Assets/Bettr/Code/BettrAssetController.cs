@@ -424,7 +424,10 @@ namespace Bettr.Code
 
             var assetBundleURL = $"{webAssetBaseURL}/{assetBundleName}";
             using UnityWebRequest www = UnityWebRequestAssetBundle.GetAssetBundle(assetBundleURL, crc);
+            float startTime = Time.realtimeSinceStartup;
             yield return www.SendWebRequest();
+            float elapsedTime = Time.realtimeSinceStartup - startTime;
+            Debug.Log($"Network request bundle={assetBundleName} took {elapsedTime} seconds.");
 
             ClearLoadingAssetBundleCache(assetBundleManifest.AssetBundleName);
 
