@@ -31,8 +31,9 @@ namespace Bettr.Code
         {
             Debug.Log($"Starting User Login");
             
+            // TODO: replace this with a real device ID
             // get the device ID
-            var deviceId = SystemInfo.deviceUniqueIdentifier;
+            var deviceId = "EE0DE516-5053-5142-80AC-2D878E91215C"; //SystemInfo.deviceUniqueIdentifier;
             var uniqueId = $"{deviceId}";
 
             BettrUserConfig = null;
