@@ -28,8 +28,10 @@ namespace Bettr.Code
         IEnumerator Start()
         {
             yield return OneTimeSetup();
-            
-            // setup the server
+
+            yield return LoginUser();
+
+            yield return LoadMainLobby();
         }
         
         private IEnumerator OneTimeSetup()
@@ -78,6 +80,22 @@ namespace Bettr.Code
             Debug.Log("OneTimeSetup ended");
             
             _oneTimeSetUpComplete = true;
+        }
+
+        private IEnumerator LoginUser()
+        {
+            var mainTable = _bettrAssetScriptsController.GetScriptTable("Main");
+            var scriptRunner = ScriptRunner.Acquire(mainTable);
+            yield return scriptRunner.CallAsyncAction("Login");
+            ScriptRunner.Release(scriptRunner);
+        }
+
+        private IEnumerator LoadMainLobby()
+        {
+            var mainTable = _bettrAssetScriptsController.GetScriptTable("Main");
+            var scriptRunner = ScriptRunner.Acquire(mainTable);
+            yield return scriptRunner.CallAsyncAction("LoadLobbyScene");
+            ScriptRunner.Release(scriptRunner);
         }
     }
 }
