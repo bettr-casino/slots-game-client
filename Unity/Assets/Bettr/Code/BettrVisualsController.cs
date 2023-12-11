@@ -16,12 +16,12 @@ namespace Bettr.Code
 {
     public delegate void RollupText(long value);
     
-    public class BettrController
+    public class BettrVisualsController
     {
-        public BettrController()
+        public BettrVisualsController()
         {
-            TileController.RegisterType<BettrController>("BettrController");
-            TileController.AddToGlobals("BettrController", this);
+            TileController.RegisterType<BettrVisualsController>("BettrVisualsController");
+            TileController.AddToGlobals("BettrVisualsController", this);
             
             TileController.RegisterType<PathCreator>("PathCreator");
             TileController.RegisterType<EndOfPathInstruction>("EndOfPathInstruction");

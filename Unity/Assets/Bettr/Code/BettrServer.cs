@@ -21,6 +21,11 @@ namespace Bettr.Code
             TileController.RegisterType<BettrServer>("BettrServer");
             TileController.AddToGlobals("BettrServer", this);
         }
+        
+        public IEnumerator LoadServerOutcome(string gameId)
+        {
+            yield break;
+        }
 
         public IEnumerator Get(string requestUri, GetCallback callback)
         {

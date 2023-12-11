@@ -16,11 +16,12 @@ namespace Bettr.Code
         [NonSerialized] private BettrAssetController _bettrAssetController;
         [NonSerialized] private BettrUserController _bettrUserController;
         [NonSerialized] private BettrReelController _bettrReelController;
-        [NonSerialized] private BettrController _bettrController;
+        [NonSerialized] private BettrVisualsController _bettrVisualsController;
         [NonSerialized] private BettrAssetScriptsController _bettrAssetScriptsController;
         [NonSerialized] private BettrAssetScenesController _bettrAssetScenesController;
         [NonSerialized] private BettrAssetPackageController _bettrAssetPackageController;
         [NonSerialized] private BettrAssetPrefabsController _bettrAssetPrefabsController;
+        [NonSerialized] private BettrOutcomeController _bettrOutcomeController;
         
         private bool _oneTimeSetUpComplete = false;
 
@@ -58,15 +59,17 @@ namespace Bettr.Code
             _bettrUserController = new BettrUserController(_bettrServer);
             _bettrReelController = new BettrReelController();
             
-            _bettrController = new BettrController();
+            _bettrVisualsController = new BettrVisualsController();
             
             _bettrAssetScriptsController = new BettrAssetScriptsController(_bettrAssetController);
             _bettrAssetScenesController = new BettrAssetScenesController(_bettrAssetController);
             
             _bettrAssetPackageController = new BettrAssetPackageController(_bettrAssetController, _bettrAssetScriptsController);
             _bettrAssetPrefabsController = new BettrAssetPrefabsController(_bettrAssetController, _bettrUserController);
+            
+            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController);
 
-            BettrController.SwitchOrientationToLandscape();
+            BettrVisualsController.SwitchOrientationToLandscape();
             
             Debug.Log("UnitySetUp");
             if (_oneTimeSetUpComplete) yield break;
