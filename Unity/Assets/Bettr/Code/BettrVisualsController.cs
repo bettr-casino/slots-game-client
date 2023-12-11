@@ -6,7 +6,6 @@ using CrayonScript.Code;
 using CrayonScript.Interpreter;
 using CrayonScript.Interpreter.Execution.VM;
 using PathCreation;
-using TMPro;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -412,7 +411,7 @@ namespace Bettr.Code
         public static void UpdateEditorGameViewSize(int width, int height, string baseName)
         {
 #if UNITY_EDITOR
-            var gameViewType = System.Type.GetType("UnityEditor.GameView,UnityEditor");
+            var gameViewType = Type.GetType("UnityEditor.GameView,UnityEditor");
             var gameView = EditorWindow.GetWindow(gameViewType);
             var setCustomResolutionMethod = gameViewType?.GetMethod("SetCustomResolution", BindingFlags.Instance | BindingFlags.NonPublic);
             if (setCustomResolutionMethod != null)
