@@ -212,6 +212,7 @@ namespace Bettr.Code
 
         public void AddScriptsToTable(string[] assetNames, AssetBundle assetBundle)
         {
+            var startTime = Time.realtimeSinceStartup;
             var scriptAssetNames = assetNames.Where(name => name.EndsWith(".cscript.txt")).ToArray();
             foreach (var scriptAssetName in scriptAssetNames)
             {
@@ -252,6 +253,8 @@ namespace Bettr.Code
                     throw;
                 }
             }
+            var endTime = Time.realtimeSinceStartup;
+            Debug.Log($"AddScriptsToTable {scriptAssetNames.Length} scripts took {endTime - startTime} seconds");
         }
     }
 
@@ -427,7 +430,7 @@ namespace Bettr.Code
             float startTime = Time.realtimeSinceStartup;
             yield return www.SendWebRequest();
             float elapsedTime = Time.realtimeSinceStartup - startTime;
-            Debug.Log($"Network request bundle={assetBundleName} took {elapsedTime} seconds.");
+            Debug.Log($"LoadWebAssetBundle bundle={assetBundleName} took {elapsedTime} seconds.");
 
             ClearLoadingAssetBundleCache(assetBundleManifest.AssetBundleName);
 
