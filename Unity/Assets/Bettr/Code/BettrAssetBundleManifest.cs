@@ -58,6 +58,8 @@ namespace Bettr.Code
         public EHash AssetFileHash { get; set; }
 
         public EHash TypeTreeHash { get; set; }
+        
+        public EHash IncrementalBuildHash { get; set; }
     }
 
     // ReSharper disable once ClassNeverInstantiated.Global
