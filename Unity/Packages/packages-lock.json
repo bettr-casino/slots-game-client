@@ -141,6 +141,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "snapser": {
+      "version": "file:/Users/rvergis/Documents/External/Snapser/sdk-csharp-unity/src/Snapser",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
