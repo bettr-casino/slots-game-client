@@ -256,6 +256,37 @@ namespace Bettr.Code
             var endTime = Time.realtimeSinceStartup;
             Debug.Log($"AddScriptsToTable {scriptAssetNames.Length} scripts took {endTime - startTime} seconds");
         }
+        
+        public void AddScriptToTable(string className, string script)
+        {
+            try
+            {
+                TileController.LoadScript(className, script);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"error loading class={className} error={e.Message}");
+                throw;
+            }
+
+            try
+            {
+                var scriptTable = TileController.RunScript<Table>(scriptName: className);
+                ScriptsTables[className] = scriptTable;
+                // DEBUG SECTION
+                // var globals = TileController.LuaScript.Globals;
+                // var t = (Table) globals["Game001BaseGameFreeSpinsTriggerSummary"];
+                // if (t != null)
+                // {
+                //     Debug.Log($"DEBUG1 globals={t.TableToJson()}");
+                // }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"error running class={className} error={e.Message}");
+                throw;
+            }
+        }
     }
 
     [Serializable]

@@ -1,4 +1,6 @@
-AssetVersion: 9ea802e15fad7fc773570186f33fd0abd9e73f18
+AssetsVersion: a4e818923f0ebe2f8d437ef4f34454457e7b3f29
 AssetsBaseURL: https://bettr-casino-assets.s3.us-west-2.amazonaws.com
+OutcomesVersion: a4e818923f0ebe2f8d437ef4f34454457e7b3f29
+OutcomesBaseURL: https://bettr-casino-outcomes.s3.us-west-2.amazonaws.com
 MainBundleName: main
 MainBundleVariant: v0_1_0

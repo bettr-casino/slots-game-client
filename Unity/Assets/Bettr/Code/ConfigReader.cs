@@ -8,13 +8,19 @@ namespace Bettr.Code
     [Serializable]
     public class ConfigData
     {
-        public string AssetVersion { get; set; }
+        public string AssetsVersion { get; set; }
         
         public string AssetsBaseURL { get; set; }
         public string MainBundleName { get; set; }
         public string MainBundleVariant { get; set; }
         
-        public string WebAssetsBaseURL => $"{AssetsBaseURL}/{AssetVersion}";
+        public string OutcomesVersion { get; set; }
+        
+        public string OutcomesBaseURL { get; set; }
+        
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/{AssetsVersion}/Assets";
+        
+        public string WebOutcomesBaseURL => $"{OutcomesBaseURL}/{OutcomesVersion}/Outcomes";
     }
 
     public static class ConfigReader

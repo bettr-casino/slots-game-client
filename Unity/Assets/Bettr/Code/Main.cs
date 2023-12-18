@@ -67,7 +67,12 @@ namespace Bettr.Code
             _bettrAssetPackageController = new BettrAssetPackageController(_bettrAssetController, _bettrAssetScriptsController);
             _bettrAssetPrefabsController = new BettrAssetPrefabsController(_bettrAssetController, _bettrUserController);
             
-            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController);
+            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController)
+            {
+                OutcomeNumber = 1,
+                UseFileSystemOutcomes = false,
+                WebOutcomesBaseURL = _configData.WebOutcomesBaseURL,
+            };
 
             BettrVisualsController.SwitchOrientationToLandscape();
             
