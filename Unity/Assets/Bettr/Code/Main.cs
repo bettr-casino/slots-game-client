@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
+using Bettr.Core;
 using CrayonScript.Code;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 namespace Bettr.Code
 {
@@ -42,6 +42,7 @@ namespace Bettr.Code
             Debug.Log("OneTimeSetup started");
 
             TileController.RegisterModule("Bettr.dll");
+            TileController.RegisterModule("BettrCore.dll");
             
             // load the config file
             _configData = ConfigReader.Parse(configFile.text);
@@ -66,13 +67,12 @@ namespace Bettr.Code
             
             _bettrAssetPackageController = new BettrAssetPackageController(_bettrAssetController, _bettrAssetScriptsController);
             _bettrAssetPrefabsController = new BettrAssetPrefabsController(_bettrAssetController, _bettrUserController);
-            
-            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController)
-            {
-                OutcomeNumber = 1,
-                UseFileSystemOutcomes = false,
-                WebOutcomesBaseURL = _configData.WebOutcomesBaseURL,
-            };
+
+            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController, _bettrUserController, _configData.OutcomesVersion)
+                {
+                    UseFileSystemOutcomes = false,
+                    WebOutcomesBaseURL = _configData.WebOutcomesBaseURL,
+                };
 
             BettrVisualsController.SwitchOrientationToLandscape();
             

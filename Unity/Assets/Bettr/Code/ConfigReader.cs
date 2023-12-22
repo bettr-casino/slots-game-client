@@ -20,7 +20,7 @@ namespace Bettr.Code
         
         public string WebAssetsBaseURL => $"{AssetsBaseURL}/{AssetsVersion}/Assets";
         
-        public string WebOutcomesBaseURL => $"{OutcomesBaseURL}/{OutcomesVersion}/Outcomes";
+        public string WebOutcomesBaseURL => $"{OutcomesBaseURL}";
     }
 
     public static class ConfigReader

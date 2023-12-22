@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "casino.bettr.core": {
+      "version": "file:/Users/rvergis/Documents/External/Bettr/GitHub/bettr-casino/slots-game-client-plugins/Unity/Packages/casino/bettr/core",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "casino.bettr.crayonscript": {
       "version": "file:/Users/rvergis/Documents/External/Crayonscript/GitHub/crayonscript/Unity/Packages/casino/bettr/crayonscript",
       "depth": 0,
@@ -140,12 +146,6 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "snapser": {
-      "version": "file:/Users/rvergis/Documents/External/Snapser/sdk-csharp-unity/src/Snapser",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
