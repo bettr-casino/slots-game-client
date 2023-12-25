@@ -18,7 +18,7 @@ namespace Bettr.Code
         
         public string OutcomesBaseURL { get; set; }
         
-        public string WebAssetsBaseURL => $"{AssetsBaseURL}/{AssetsVersion}/Assets";
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}";
         
         public string WebOutcomesBaseURL => $"{OutcomesBaseURL}";
     }
