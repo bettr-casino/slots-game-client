@@ -34,7 +34,7 @@ namespace Bettr.Code
 
             yield return LoadMainLobby();
         }
-        
+
         private IEnumerator OneTimeSetup()
         {
             if (_oneTimeSetUpComplete) yield break;
@@ -47,17 +47,48 @@ namespace Bettr.Code
             // load the config file
             _configData = ConfigReader.Parse(configFile.text);
             
-            BettrModel.Init();
-
             _bettrServer = new BettrServer(_configData.AssetsBaseURL);
             
+            _bettrUserController = new BettrUserController(_bettrServer);
+            
+            var userId = _bettrUserController.GetUserId();
+
+            var assetVersion = "";
+            
+            yield return _bettrServer.Get($"/users/{userId}/commit_hash.txt", (url, payload, success, error) =>
+            {
+                if (!success)
+                {
+                    Debug.LogError($"User JSON retrieved Success: url={url} error={error}");
+                    return;
+                }
+                
+                if (payload.Length == 0)
+                {
+                    Debug.LogError("empty payload retrieved from url={url}");
+                    return;
+                }
+                
+                assetVersion = System.Text.Encoding.UTF8.GetString(payload);
+                
+            });
+
+            if (String.IsNullOrWhiteSpace(assetVersion))
+            {
+                Debug.LogError($"Unable to retrieve commit_hash for user url={userId}");
+                yield break;
+            }
+            
+            _configData.AssetsVersion = assetVersion;
+            
+            BettrModel.Init();
+
             _bettrAssetController = new BettrAssetController
             {
                 webAssetBaseURL = _configData.WebAssetsBaseURL,
                 useFileSystemAssetBundles = false,
             };
-
-            _bettrUserController = new BettrUserController(_bettrServer);
+            
             _bettrReelController = new BettrReelController();
             
             _bettrVisualsController = new BettrVisualsController();
