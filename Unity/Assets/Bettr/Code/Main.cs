@@ -68,7 +68,7 @@ namespace Bettr.Code
             _bettrAssetPackageController = new BettrAssetPackageController(_bettrAssetController, _bettrAssetScriptsController);
             _bettrAssetPrefabsController = new BettrAssetPrefabsController(_bettrAssetController, _bettrUserController);
 
-            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController, _bettrUserController, _configData.OutcomesVersion)
+            _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController, _bettrUserController, _configData.AssetsVersion)
                 {
                     UseFileSystemOutcomes = false,
                     WebOutcomesBaseURL = _configData.WebOutcomesBaseURL,

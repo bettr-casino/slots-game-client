@@ -14,8 +14,6 @@ namespace Bettr.Code
         public string MainBundleName { get; set; }
         public string MainBundleVariant { get; set; }
         
-        public string OutcomesVersion { get; set; }
-        
         public string OutcomesBaseURL { get; set; }
         
         public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}";
