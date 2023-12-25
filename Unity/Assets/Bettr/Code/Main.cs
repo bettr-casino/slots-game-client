@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Bettr.Core;
 using CrayonScript.Code;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Bettr.Code
 {
@@ -116,6 +118,8 @@ namespace Bettr.Code
             yield return scriptRunner.CallAsyncAction("Init");
             ScriptRunner.Release(scriptRunner);
             
+            DontDestroyOnLoad(gameObject);
+            
             Debug.Log("OneTimeSetup ended");
             
             _oneTimeSetUpComplete = true;
@@ -135,6 +139,23 @@ namespace Bettr.Code
             var scriptRunner = ScriptRunner.Acquire(mainTable);
             yield return scriptRunner.CallAsyncAction("LoadLobbyScene");
             ScriptRunner.Release(scriptRunner);
+
+            yield return UpdateCommitHash();
+        }
+        
+        private IEnumerator UpdateCommitHash()
+        {
+            var activeScene = SceneManager.GetActiveScene();
+            while (activeScene.name != "MainLobbyScene")
+            {
+                yield return null;
+                activeScene = SceneManager.GetActiveScene();
+            }
+            
+            var allRootGameObjects = activeScene.GetRootGameObjects();
+            var appGameObject = allRootGameObjects.First((o => o.name == "App"));
+            var appTile = appGameObject.GetComponent<Tile>();
+            appTile.Call("SetCommitHash", _configData.AssetsVersion);
         }
     }
 }
