@@ -9,7 +9,7 @@ BUILD_METHOD := "CommandLine.BuildIOS"
 
 build_ios:
 	@echo "Building iOS project..."
-	@$(UNITY_APP) -quit -batchmode -logFile $(BUILD_LOGS_PATH)/logfile.log -projectPath $(UNITY_PROJECT_PATH) -executeMethod $(BUILD_METHOD) -buildOutput $(BUILD_OUTPUT_PATH)
+	@$(UNITY_APP) -quit -batchmode -logFile $(BUILD_LOGS_PATH)/logfile.log -projectPath $(UNITY_PROJECT_PATH) -executeMethod $(BUILD_METHOD) -buildOutput $(BUILD_OUTPUT_PATH) -buildTarget iOS -development -scriptDebugging
 	@echo "Build completed."
 
 

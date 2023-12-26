@@ -54,7 +54,7 @@ namespace Bettr.Code
             _bettrUserController = new BettrUserController(_bettrServer);
             
             var userId = _bettrUserController.GetUserId();
-
+            
             var assetVersion = "";
             
             yield return _bettrServer.Get($"/users/{userId}/commit_hash.txt", (url, payload, success, error) =>
@@ -83,6 +83,8 @@ namespace Bettr.Code
             
             _configData.AssetsVersion = assetVersion;
             
+            Debug.Log($"userId={userId} AssetsVersion={_configData.AssetsVersion} AssetsBaseURL={_configData.AssetsBaseURL} WebAssetsBaseURL={_configData.WebAssetsBaseURL} WebOutcomesBaseURL={_configData.WebOutcomesBaseURL} MainBundleName={_configData.MainBundleName} MainBundleVariant={_configData.MainBundleVariant}");
+            
             BettrModel.Init();
 
             _bettrAssetController = new BettrAssetController
@@ -109,7 +111,6 @@ namespace Bettr.Code
 
             BettrVisualsController.SwitchOrientationToLandscape();
             
-            Debug.Log("UnitySetUp");
             if (_oneTimeSetUpComplete) yield break;
             yield return _bettrAssetPackageController.LoadPackage(_configData.MainBundleName, _configData.MainBundleVariant, false);
             
