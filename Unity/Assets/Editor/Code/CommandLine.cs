@@ -32,7 +32,10 @@ public class CommandLine
             Directory.Delete(buildPath, true);  // true for recursive delete
         }
 
-        Directory.CreateDirectory(buildDirectory);
+        if (!Directory.Exists(buildDirectory))
+        {
+            Directory.CreateDirectory(buildDirectory);
+        }
 
         // Set the build settings
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
