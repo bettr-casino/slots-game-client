@@ -16,7 +16,21 @@ namespace Bettr.Code
         
         public string OutcomesBaseURL { get; set; }
         
-        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}";
+#if UNITY_iOS
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/iOS";
+#endif
+#if UNITY_Android
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/Android";
+#endif
+#if UNITY_WebGL
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/WebGL";
+#endif
+#if UNITY_StandaloneOSX
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/OSX";
+#endif
+#if UNITY_EDITOR
+        public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/OSX";
+#endif
         
         public string WebOutcomesBaseURL => $"{OutcomesBaseURL}";
     }
