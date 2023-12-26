@@ -24,18 +24,21 @@ public class CommandLine
 
         // Get the build output path from the command line arguments
         string buildDirectory = args[buildOutputIndex];
+        string buildPath = Path.Combine(buildDirectory, "BettrSlots");
 
-        // Create the build directory if it doesn't exist
-        if (!Directory.Exists(buildDirectory))
+        if (Directory.Exists(buildPath))
         {
-            Directory.CreateDirectory(buildDirectory);
+            Debug.Log("Removing existing build directory: " + buildPath);
+            Directory.Delete(buildPath, true);  // true for recursive delete
         }
+
+        Directory.CreateDirectory(buildDirectory);
 
         // Set the build settings
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = EditorBuildSettings.scenes.Where(scene => scene.enabled).Select(scene => scene.path).ToArray(),
-            locationPathName = Path.Combine(buildDirectory, "BettrSlots"), // Specify the build name here
+            locationPathName = buildPath, // Specify the build name here
             target = BuildTarget.iOS,
             options = BuildOptions.None
         };
