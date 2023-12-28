@@ -43,6 +43,7 @@ namespace Bettr.Code
             
             Debug.Log("OneTimeSetup started");
 
+            TileController.StaticInit();
             TileController.RegisterModule("Bettr.dll");
             TileController.RegisterModule("BettrCore.dll");
             
