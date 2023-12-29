@@ -43,6 +43,8 @@ namespace Bettr.Code
             
             Debug.Log("OneTimeSetup started");
 
+            Application.targetFrameRate = 30;
+
             TileController.StaticInit();
             TileController.RegisterModule("Bettr.dll");
             TileController.RegisterModule("BettrCore.dll");
