@@ -19,7 +19,7 @@ namespace Bettr.Code
 #if UNITY_IOS
         public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/iOS";
 #endif
-#if UNITY_Android
+#if UNITY_ANDROID
         public string WebAssetsBaseURL => $"{AssetsBaseURL}/assets/{AssetsVersion}/Android";
 #endif
 #if UNITY_WebGL
