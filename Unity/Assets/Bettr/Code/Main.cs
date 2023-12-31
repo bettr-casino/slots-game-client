@@ -16,16 +16,16 @@ namespace Bettr.Code
         [NonSerialized] private ConfigData _configData;
         [NonSerialized] private BettrServer _bettrServer;
         [NonSerialized] private BettrAssetController _bettrAssetController;
-        [NonSerialized] private BettrUserController _bettrUserController;
-        [NonSerialized] private BettrReelController _bettrReelController;
-        [NonSerialized] private BettrVisualsController _bettrVisualsController;
         [NonSerialized] private BettrAssetScriptsController _bettrAssetScriptsController;
-        [NonSerialized] private BettrAssetScenesController _bettrAssetScenesController;
-        [NonSerialized] private BettrAssetPackageController _bettrAssetPackageController;
-        [NonSerialized] private BettrAssetPrefabsController _bettrAssetPrefabsController;
+        [NonSerialized] private BettrUserController _bettrUserController;
+        // ReSharper disable once NotAccessedField.Local
+        [NonSerialized] private BettrReelController _bettrReelController;
+        // ReSharper disable once NotAccessedField.Local
+        [NonSerialized] private BettrVisualsController _bettrVisualsController;
+        // ReSharper disable once NotAccessedField.Local
         [NonSerialized] private BettrOutcomeController _bettrOutcomeController;
         
-        private bool _oneTimeSetUpComplete = false;
+        private bool _oneTimeSetUpComplete;
 
         // Start is called before the first frame update
         IEnumerator Start()
@@ -98,12 +98,8 @@ namespace Bettr.Code
             
             _bettrVisualsController = new BettrVisualsController();
             
-            _bettrAssetScriptsController = new BettrAssetScriptsController(_bettrAssetController);
-            _bettrAssetScenesController = new BettrAssetScenesController(_bettrAssetController);
+            _bettrAssetScriptsController = _bettrAssetController.BettrAssetScriptsController;
             
-            _bettrAssetPackageController = new BettrAssetPackageController(_bettrAssetController, _bettrAssetScriptsController);
-            _bettrAssetPrefabsController = new BettrAssetPrefabsController(_bettrAssetController, _bettrUserController);
-
             _bettrOutcomeController = new BettrOutcomeController(_bettrAssetScriptsController, _bettrUserController, _configData.AssetsVersion)
                 {
                     UseFileSystemOutcomes = false,
@@ -113,9 +109,9 @@ namespace Bettr.Code
             BettrVisualsController.SwitchOrientationToLandscape();
             
             if (_oneTimeSetUpComplete) yield break;
-            yield return _bettrAssetPackageController.LoadPackage(_configData.MainBundleName, _configData.MainBundleVariant, false);
+            yield return _bettrAssetController.LoadPackage(_configData.MainBundleName, _configData.MainBundleVariant, false);
             
-            var mainTable = _bettrAssetScriptsController.GetScriptTable("Main");
+            var mainTable = _bettrAssetScriptsController.GetScript("Main");
             var scriptRunner = ScriptRunner.Acquire(mainTable);
             yield return scriptRunner.CallAsyncAction("Init");
             ScriptRunner.Release(scriptRunner);
@@ -129,7 +125,7 @@ namespace Bettr.Code
 
         private IEnumerator LoginUser()
         {
-            var mainTable = _bettrAssetScriptsController.GetScriptTable("Main");
+            var mainTable = _bettrAssetScriptsController.GetScript("Main");
             var scriptRunner = ScriptRunner.Acquire(mainTable);
             yield return scriptRunner.CallAsyncAction("Login");
             ScriptRunner.Release(scriptRunner);
@@ -137,7 +133,7 @@ namespace Bettr.Code
 
         private IEnumerator LoadMainLobby()
         {
-            var mainTable = _bettrAssetScriptsController.GetScriptTable("Main");
+            var mainTable = _bettrAssetScriptsController.GetScript("Main");
             var scriptRunner = ScriptRunner.Acquire(mainTable);
             yield return scriptRunner.CallAsyncAction("LoadLobbyScene");
             ScriptRunner.Release(scriptRunner);
