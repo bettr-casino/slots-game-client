@@ -19,8 +19,6 @@ namespace Bettr.Code
         [NonSerialized] private BettrAssetScriptsController _bettrAssetScriptsController;
         [NonSerialized] private BettrUserController _bettrUserController;
         // ReSharper disable once NotAccessedField.Local
-        [NonSerialized] private BettrReelController _bettrReelController;
-        // ReSharper disable once NotAccessedField.Local
         [NonSerialized] private BettrVisualsController _bettrVisualsController;
         // ReSharper disable once NotAccessedField.Local
         [NonSerialized] private BettrOutcomeController _bettrOutcomeController;
@@ -93,8 +91,6 @@ namespace Bettr.Code
                 webAssetBaseURL = _configData.WebAssetsBaseURL,
                 useFileSystemAssetBundles = false,
             };
-            
-            _bettrReelController = new BettrReelController();
             
             _bettrVisualsController = new BettrVisualsController();
             
