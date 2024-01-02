@@ -22,8 +22,6 @@ namespace Bettr.Code
         [NonSerialized] private BettrVisualsController _bettrVisualsController;
         // ReSharper disable once NotAccessedField.Local
         [NonSerialized] private BettrOutcomeController _bettrOutcomeController;
-        // ReSharper disable once NotAccessedField.Local
-        [NonSerialized] private BettrBaseGameReelController _bettrBaseGameReelController;
         
         private bool _oneTimeSetUpComplete;
 
@@ -103,8 +101,6 @@ namespace Bettr.Code
                     UseFileSystemOutcomes = false,
                     WebOutcomesBaseURL = _configData.WebOutcomesBaseURL,
                 };
-            
-            _bettrBaseGameReelController = new BettrBaseGameReelController();
 
             BettrVisualsController.SwitchOrientationToLandscape();
             
